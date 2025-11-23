@@ -241,23 +241,6 @@ A função `to_grayscale` implementa a conversão RGB → Luminância seguindo o
 
 O filtro `to_blur` implementa uma convolução discreta 2D com kernel uniforme 3×3, aplicando média local para suavização da imagem. O tratamento de bordas utiliza padding por replicação de pixels extremos.
 
-## Contribuindo
-
-Contribuições são bem-vindas! Para contribuir:
-
-1. Faça um fork do repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/MinhaFeature`)
-3. Commit suas mudanças (`git commit -m 'Adiciona MinhaFeature'`)
-4. Push para a branch (`git push origin feature/MinhaFeature`)
-5. Abra um Pull Request
-
-### Diretrizes de Contribuição
-
-- Mantenha o código consistente com o estilo existente
-- Adicione testes para novas funcionalidades
-- Atualize a documentação quando necessário
-- Siga as convenções PEP 8 para código Python
-
 ## Testes
 
 Para executar os testes unitários (quando implementados):
@@ -272,38 +255,6 @@ Este projeto está licenciado sob a [MIT License](LICENSE) - veja o arquivo LICE
 
 ## Autores
 
-- **[Seu Nome]** - *Desenvolvimento e Documentação*
-- **[Nome do Integrante 2]** - *Desenvolvimento e Testes* (se aplicável)
-- **[Nome do Integrante 3]** - *Empacotamento e Distribuição* (se aplicável)
-
-## Agradecimentos
-
-- Prof. Evandro Chagas Ribeiro da Rosa - Orientação e supervisão do projeto
-- UNIVALI - Universidade do Vale do Itajaí
-- Comunidade Python - Ferramentas e recursos open-source
-
-## Roadmap
-
-Funcionalidades planejadas para versões futuras:
-
-- [ ] Filtros adicionais (sharpen, edge detection, emboss)
-- [ ] Suporte para processamento em batch
-- [ ] Interface CLI (Command Line Interface)
-- [ ] Otimizações de performance com Numba ou Cython
-- [ ] Documentação interativa com exemplos visuais
-- [ ] Suporte para processamento de vídeo
-
-## Problemas Conhecidos
-
-Reporte bugs e problemas através da [seção de Issues](link-do-repositorio/issues) no repositório.
-
-## Contato
-
-Para dúvidas, sugestões ou feedback:
-
-- **Email**: [seu-email@exemplo.com]
-- **GitHub**: [seu-usuario]
-
----
-
-**PyFil** - Processamento de Imagens Simplificado 🖼️✨
+- **Daniel Henrique da Silva**
+- **Guilherme Melo**
+- **Leonardo Pinheiro de Souza**
