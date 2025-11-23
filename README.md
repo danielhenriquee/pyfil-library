@@ -12,6 +12,7 @@ O projeto foi desenvolvido como parte da disciplina **Introdução à Programaç
 - **Eficiência**: Implementação otimizada usando operações vetorizadas do NumPy
 - **Compatibilidade**: Suporte para múltiplos formatos de imagem (JPEG, PNG, BMP, etc.)
 - **Conversão Automática**: Tratamento automático de diferentes modos de cor
+- **Validação Robusta**: Tratamento de erros e validação de entrada em todas as funções
 - **Sem Dependências Externas Pesadas**: Utiliza apenas PIL/Pillow e NumPy
 
 ## Instalação
@@ -217,6 +218,27 @@ pyfil/
 - **Pillow**: 8.0 ou superior
 - **NumPy**: 1.19 ou superior
 
+## Tratamento de Erros
+
+A biblioteca PyFil implementa validação robusta de entrada para garantir operações seguras:
+
+### Validações Automáticas
+
+Todas as funções validam automaticamente:
+- **Tipo de entrada**: Verifica se o objeto é uma imagem PIL válida
+- **Dimensões**: Garante que a imagem não está vazia (0×0)
+- **Valores None**: Rejeita entradas nulas
+
+### Exceções Específicas
+
+**`TypeError`**: Lançado quando:
+- A entrada não é um objeto PIL.Image
+- Parâmetros têm tipo incorreto (ex: intensity não é int)
+
+**`ValueError`**: Lançado quando:
+- A imagem tem dimensões inválidas (0×0)
+- Parâmetros têm valores inválidos (ex: intensity ou factor negativos)
+  
 ## Fundamentos Técnicos
 
 ### Processamento de Imagens
