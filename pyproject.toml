@@ -8,7 +8,7 @@ version = "0.0.1"
 authors = [
   { name="Daniel Henrique da Silva",   email="danielhenrique@edu.univali.br" },
   { name="Guilherme Melo",             email="@edu.univali.br" },
-  { name="Leonardo Pinheiro de Souza", email="@edu.univali.br" },
+  { name="Leonardo Pinheiro de Souza", email="leonardo.8557802@edu.univali.br" },
 ]
 description = "Biblioteca Python para processamento de imagens e aplicação de filtros. Desenvolvida durante disciplina Introdução à Python."
 readme = "README.md"
