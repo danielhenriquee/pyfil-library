@@ -211,9 +211,9 @@ pyfil/
 │   └── usage_examples.py # Exemplos de uso
 │
 ├── LICENSE               # Licença do projeto
-├── README.md            # Este arquivo
-├── pyproject.toml       # Configuração do projeto
-└── setup.py             # Script de instalação
+├── README.md             # Este arquivo
+├── pyproject.toml        # Configuração do projeto
+└── setup.py              # Script de instalação
 ```
 
 ## Requisitos do Sistema
