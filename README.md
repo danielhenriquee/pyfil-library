@@ -63,13 +63,7 @@ import pyfil
 # Carregar imagem
 original = Image.open("paisagem.jpg")
 
-# Aplicar blur com intensidade 3
-img_blur = pyfil.to_blur(original, intensity=3)
-
-# Ajustar brilho (aumentar 50%)
-img_bright = pyfil.to_bright(original, factor=1.5)
-
-# Combinar filtros: sépia + brilho reduzido
+# Combinação de filtros: sépia + brilho reduzido
 img_combo = pyfil.to_sepia(original)
 img_combo = pyfil.to_bright(img_combo, factor=0.8)
 img_combo.save("paisagem_vintage.jpg")
