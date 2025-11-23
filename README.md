@@ -1,4 +1,4 @@
-# PyFil - Python Image Filtering Library
+# PyFil - Biblioteca Python para filtros de imagens
 
 ## Descrição
 
