@@ -204,9 +204,6 @@ pyfil/
 ├── pyfil/
 │   └── __init__.py
 │
-├── examples/
-│   └── usage_examples.py # Exemplos de uso
-│
 ├── LICENSE               # Licença do projeto
 ├── README.md             # Este arquivo
 └── pyproject.toml        # Configuração do projeto
