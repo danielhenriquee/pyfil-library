@@ -2,8 +2,24 @@ from PIL import Image
 import numpy as np
 from typing import Union
 
+def validate_image(img: Image.Image) -> None:
+    """Função auxiliar interna para validar se o objeto é uma imagem válida.
+    
+    Raises:
+        TypeError: Se a entrada não for um objeto PIL.Image.
+        ValueError: Se a imagem tiver dimensões inválidas (0x0).
+    """
+    if img is None:
+        raise TypeError("A imagem de entrada não pode ser None.")
+    
+    if not isinstance(img, Image.Image):
+        raise TypeError(f"Esperado objeto PIL.Image, recebido: {type(img).__name__}")
+    
+    if img.size[0] == 0 or img.size[1] == 0:
+        raise ValueError("A imagem de entrada está vazia (dimensões 0x0).")
+        
 def ensure_rgb(img: Image.Image) -> Image.Image:
-    """Garante que a imagem esteja no formato RGB.
+    """Garante que a imagem esteja no formato RGB e valida a entrada.
 
     Converte a imagem para RGB caso ela esteja em outro modo (L, RGBA, CMYK etc.),
     garantindo que todas as funções de filtragem da biblioteca operem com 3 canais.
@@ -14,6 +30,9 @@ def ensure_rgb(img: Image.Image) -> Image.Image:
     Returns:
         PIL.Image.Image: Imagem convertida para RGB.
     """
+    # Validação da imagem
+    validate_image(img)
+    
     if img.mode != "RGB":
         return img.convert("RGB")
     return img
@@ -57,8 +76,21 @@ def to_blur(img: Image.Image, intensity: int = 1) -> Image.Image:
     Returns:
         PIL.Image.Image: Imagem borrada.
     """
+    # Verifica se a intensidade é Int
+    if not isinstance(intensity, int):
+        raise TypeError(f"A intensidade deve ser um número inteiro, recebido: {type(intensity).__name__}")
+
+    # Verifica se o valor da intensidade é um número não negativo
+    if intensity < 0:
+        raise ValueError("A intensidade do blur não pode ser negativa.")
+
+    # Validação da imagem
     out = ensure_rgb(img)
 
+    # Se a intensidade for 0, retorna a imagem original
+    if intensity == 0:
+        return out
+        
     # Loop para aplicar o filtro múltiplas vezes conforme a intensidade desejada
     for _ in range(intensity):
         array = np.array(out)
@@ -137,6 +169,15 @@ def to_bright(img: Image.Image, factor: Union[int, float]) -> Image.Image:
     Returns:
         PIL.Image.Image: Imagem com brilho ajustado.
     """
+
+    # Verifica se o fator de bilho é Float/Int 
+    if not isinstance(factor, (int, float)):
+        raise TypeError(f"O fator de brilho deve ser numérico (int ou float), recebido: {type(factor).__name__}")
+
+    # Verifica se o fator de bilho é um número não negativo
+    if factor < 0:
+        raise ValueError("O fator de brilho não pode ser negativo.")
+        
     img = ensure_rgb(img)
     
     # Converte para float para evitar erros de arredondamento durante a multiplicação
