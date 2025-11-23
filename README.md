@@ -74,6 +74,7 @@ img_combo.save("paisagem_vintage.jpg")
 ### `ensure_rgb(img: Image.Image) -> Image.Image`
 
 Garante que a imagem esteja no formato RGB, convertendo-a caso necessário.
+Utilizada internamente para garantir compatibilidade entre filtros.
 
 **Parâmetros:**
 - `img` (PIL.Image.Image): Imagem de entrada em qualquer modo de cor
