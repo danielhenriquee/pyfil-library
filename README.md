@@ -237,7 +237,7 @@ Todas as funções validam automaticamente:
 
 **`ValueError`**: Lançado quando:
 - A imagem tem dimensões inválidas (0×0)
-- Parâmetros têm valores inválidos (ex: intensity ou factor negativos)
+- Parâmetros têm valores inválidos (ex: intensidade do blur ou fator de brilho negativos)
   
 ## Fundamentos Técnicos
 
