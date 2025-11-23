@@ -202,10 +202,6 @@ pyfil/
 │
 ├── pyfil/
 │   ├── __init__.py
-│   └── pyfil.py          # Módulo principal com todas as funções
-│
-├── tests/
-│   └── test_pyfil.py     # Testes unitários (se implementados)
 │
 ├── examples/
 │   └── usage_examples.py # Exemplos de uso
@@ -235,14 +231,6 @@ A função `to_grayscale` implementa a conversão RGB → Luminância seguindo o
 ### Convolução e Filtragem Espacial
 
 O filtro `to_blur` implementa uma convolução discreta 2D com kernel uniforme 3×3, aplicando média local para suavização da imagem. O tratamento de bordas utiliza padding por replicação de pixels extremos.
-
-## Testes
-
-Para executar os testes unitários (quando implementados):
-
-```bash
-python -m pytest tests/
-```
 
 ## Licença
 
