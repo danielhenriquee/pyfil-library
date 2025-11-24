@@ -20,7 +20,7 @@ O projeto foi desenvolvido como parte da disciplina **Introdução à Programaç
 ### Via Test PyPI
 
 ```bash
-pip install -i https://test.pypi.org/simple/ pyfil
+pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ pyfil==0.0.1
 ```
 
 ### Instalação das Dependências
