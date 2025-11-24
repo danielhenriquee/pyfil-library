@@ -17,18 +17,22 @@ O projeto foi desenvolvido como parte da disciplina **Introdução à Programaç
 
 ## Instalação
 
-### Via Test PyPI
+### Instalação Completa (Recomendado)
 
 ```bash
-pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ pyfil==0.0.1
+pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ pyfil
 ```
 
-### Instalação das Dependências
+Este comando instala automaticamente as dependências necessárias (Pillow e NumPy).
 
-A biblioteca requer as seguintes dependências, que serão instaladas automaticamente:
+### Instalação Manual (Alternativa)
 
 ```bash
+# 1. Instalar dependências
 pip install Pillow numpy
+
+# 2. Instalar pyfil do Test PyPI
+pip install -i https://test.pypi.org/simple/ pyfil
 ```
 
 ## Início Rápido
@@ -253,6 +257,13 @@ O filtro `to_blur` implementa uma convolução discreta 2D com kernel uniforme 3
 ## Licença
 
 Este projeto está licenciado sob a [MIT License](LICENSE) - veja o arquivo LICENSE para detalhes.
+
+## Links
+
+- **Repositório GitHub:** https://github.com/danielhenriquee/pyfil-library
+- **Test PyPI:** https://test.pypi.org/project/pyfil/0.0.1/
+
+---
 
 ## Autores
 
