@@ -10,7 +10,8 @@ O projeto foi desenvolvido como parte da disciplina **Introdução à Programaç
 
 - **Interface Intuitiva**: Funções simples e diretas para aplicação de filtros
 - **Eficiência**: Implementação otimizada usando operações vetorizadas do NumPy
-- **Compatibilidade**: Suporte para múltiplos formatos de imagem (JPEG, PNG, BMP, etc.)
+- **Compatibilidade**: Suporte para múltiplos formatos de imagem (JPEG, PNG, BMP, TIFF, GIF, WEBP, etc.)
+- **Flexibilidade de Formato**: Leia uma imagem em um formato e salve em outro (ex: abrir JPG e salvar como PNG)
 - **Conversão Automática**: Tratamento automático de diferentes modos de cor
 - **Validação Robusta**: Tratamento de erros e validação de entrada em todas as funções
 - **Sem Dependências Externas Pesadas**: Utiliza apenas PIL/Pillow e NumPy
@@ -37,13 +38,69 @@ pip install -i https://test.pypi.org/simple/ pyfil
 
 ## Início Rápido
 
-### Exemplo Básico
+### Importação Necessária
+
+**Importante:** Para usar a biblioteca, você precisa importar tanto o `pyfil` quanto o `PIL.Image`:
 
 ```python
+import pyfil          
 from PIL import Image
-import pyfil
+```
 
-# Carregar uma imagem
+- **`pyfil`**: Fornece as funções de filtragem (to_grayscale, to_sepia, etc.)
+- **`PIL.Image`**: Necessário para abrir e salvar imagens
+
+### Fluxo Básico de Trabalho
+
+O fluxo padrão para usar a pyfil segue 3 etapas:
+
+1. **Abrir a imagem** com `Image.open()`
+2. **Aplicar filtros** usando funções do `pyfil`
+3. **Salvar o resultado** com `.save()`
+
+```python
+import pyfil
+from PIL import Image
+
+# 1. Abrir a imagem
+img = Image.open("foto.jpg")
+
+# 2. Aplicar filtro
+img_filtrada = pyfil.to_grayscale(img)
+
+# 3. Salvar o resultado
+img_filtrada.save("foto_cinza.jpg")
+```
+
+### Suporte a Múltiplos Formatos
+
+A pyfil suporta diversos formatos de imagem através da PIL/Pillow. Você pode:
+
+- **Abrir** imagens em formatos: JPEG, JPG, PNG, BMP, TIFF, GIF, WEBP, e outros
+- **Salvar** o resultado em qualquer formato suportado
+- **Converter formatos** automaticamente (ex: abrir JPG e salvar como PNG)
+
+```python
+# Exemplo: Abrir JPEG e salvar como PNG
+img = Image.open("foto.jpg")           # Abre JPEG
+img_sepia = pyfil.to_sepia(img)
+img_sepia.save("foto_sepia.png")       # Salva como PNG
+
+# Exemplo: Abrir PNG e salvar como JPEG
+img = Image.open("imagem.png")         # Abre PNG
+img_blur = pyfil.to_blur(img, intensity=3)
+img_blur.save("imagem_blur.jpg")       # Salva como JPEG
+```
+
+**Nota:** O formato de saída é determinado pela extensão do arquivo no método `.save()`.
+
+### Exemplo Básico Completo
+
+```python
+import pyfil
+from PIL import Image
+
+# Abrir uma imagem
 img = Image.open("foto.jpg")
 
 # Aplicar filtro de escala de cinza
@@ -52,7 +109,7 @@ img_gray.save("foto_cinza.jpg")
 
 # Aplicar filtro sépia
 img_sepia = pyfil.to_sepia(img)
-img_sepia.save("foto_sepia.jpg")
+img_sepia.save("foto_sepia.png")        # Salva em formato diferente
 
 # Criar negativo
 img_negative = pyfil.to_negative(img)
@@ -62,8 +119,8 @@ img_negative.save("foto_negativa.jpg")
 ### Exemplo com Múltiplos Filtros
 
 ```python
-from PIL import Image
 import pyfil
+from PIL import Image
 
 # Carregar imagem
 original = Image.open("paisagem.jpg")
@@ -72,6 +129,52 @@ original = Image.open("paisagem.jpg")
 img_combo = pyfil.to_sepia(original)
 img_combo = pyfil.to_bright(img_combo, factor=0.8)
 img_combo.save("paisagem_vintage.jpg")
+```
+
+## Combinando Filtros
+
+Um dos diferenciais da **pyfil** é a facilidade de combinar múltiplos filtros para criar efeitos personalizados:
+
+### Efeito "Foto Antiga Assustadora"
+```python
+import pyfil
+from PIL import Image
+
+original = Image.open("foto.jpg")
+
+# Pipeline: Sépia → Blur → Escurecimento
+passo1 = pyfil.to_sepia(original)
+passo2 = pyfil.to_blur(passo1, intensity=3)
+resultado = pyfil.to_bright(passo2, factor=0.7)
+resultado.save("foto_antiga_dark.jpg")
+```
+
+### Efeito "Sonho"
+```python
+# Pipeline: Blur → Iluminação → Blur suave
+passo1 = pyfil.to_blur(original, intensity=2)
+passo2 = pyfil.to_bright(passo1, factor=1.3)
+resultado = pyfil.to_blur(passo2, intensity=1)
+resultado.save("efeito_sonho.jpg")
+```
+
+### Efeito "Terror"
+```python
+# Pipeline: Grayscale → Negativo → Blur → Escurecimento intenso
+passo1 = pyfil.to_grayscale(original)
+passo2 = pyfil.to_negative(passo1)
+passo3 = pyfil.to_blur(passo2, intensity=1)
+resultado = pyfil.to_bright(passo3, factor=0.5)
+resultado.save("efeito_terror.jpg")
+```
+
+### Efeito "Vintage Suave"
+```python
+# Pipeline: Sépia → Iluminação leve → Blur mínimo
+passo1 = pyfil.to_sepia(original)
+passo2 = pyfil.to_bright(passo1, factor=1.15)
+resultado = pyfil.to_blur(passo2, intensity=1)
+resultado.save("vintage_suave.jpg")
 ```
 
 ## Documentação da API
@@ -208,6 +311,9 @@ pyfil/
 ├── pyfil/
 │   └── __init__.py
 │
+├── tests/
+│   └── test.py           # Script de teste dos filtros
+│
 ├── LICENSE               # Licença do projeto
 ├── README.md             # Este arquivo
 └── pyproject.toml        # Configuração do projeto
@@ -267,6 +373,10 @@ Este projeto está licenciado sob a [MIT License](LICENSE) - veja o arquivo LICE
 
 ## Autores
 
-- **Daniel Henrique da Silva**
-- **Guilherme Melo**
-- **Leonardo Pinheiro de Souza**
+- **Daniel Henrique da Silva** - danielhenrique@edu.univali.br
+- **Guilherme Melo** - guilherme.8576076@edu.univali.br
+- **Leonardo Pinheiro de Souza** - leonardo.8557802@edu.univali.br
+
+**Disciplina:** Introdução à Python
+**Professor:** Evandro Chagas Ribeiro da Rosa  
+**Instituição:** Universidade do Vale do Itajaí
